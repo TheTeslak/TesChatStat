@@ -90,6 +90,10 @@ See `config.py` for detailed configuration options, including:
 - Language and emoji settings
 - Bot and profanity detection options
 
+
+There are bugs, and the statistics are not entirely reliable (especially regarding the categorization of messages, which can lose up to 20% of voice messages, for example). It needs further development
+
+
 ## Русский
 
 Статистика чата Telegram на основе JSON-экспорта
@@ -165,3 +169,6 @@ See `config.py` for detailed configuration options, including:
 - Параметры анализа (топ участников, слов, дней и т.д.)
 - Настройки языка и эмодзи
 - Опции обнаружения ботов и нежелательной лексики
+
+
+Есть баги, статистика не прям достоверная (особенно касательно категоризации сообщений, может потерять 20% голосовых, например), нужно дорабатывать
