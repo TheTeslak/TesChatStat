@@ -12,11 +12,9 @@ output_filename_pattern = '<chat_name>_<timestamp>.txt'  # Output report filenam
 # List of stop words to exclude from frequent words analysis
 stop_words = ['и', 'в', 'не', 'на', 'с', 'что', 'а', 'как', 'это', 'по', 'но', 'из', 'у', 'за', 'о', 'же', 'то', 'к', 'для', 'до', 'вы', 'мы', 'они', 'он', 'она', 'оно', 'так', 'было', 'только', 'бы', 'когда', 'уже']
 
-# Number of top participants and words to display in the report
 top_participants_count = None  # Set to None to display all participants
-top_words_count = 50  # Number of top words to display
+top_words_count = 100  # Number of top words to display
 
-# Emojis to use in the report
 emojis = {
     'title': '💬',
     'participant': '👥',
@@ -41,10 +39,10 @@ emojis = {
     'poll': '📊',
 }
 
-# Number of top days to display
 top_days_count = 10  # Number of most active days to display
 
-# Settings to exclude bots
+show_non_consecutive_counts = True  # Display messages non-consecutively in the report
+
 exclude_bots = True  # Whether to exclude bots from analysis
 bot_identifiers = ['Bot']  # Strings to identify bots
 
