@@ -1,3 +1,5 @@
+# config.py
+
 # -------------------------
 # Settings
 # -------------------------
@@ -57,7 +59,7 @@ month_names = {
 }
 
 # Words to detect profanity in messages
-profanity_words = ['пиздец', 'слово2', 'слово3']  # Replace with real profane words
+profanity_words = ['нецензурное_слово1', 'нецензурное_слово2', 'нецензурное_слово3']  # Replace with real profane words
 
 # Command prefixes (e.g., '/')
 commands_identifiers = ['/']
@@ -79,7 +81,7 @@ emoji_pattern = re.compile("["
 url_pattern = re.compile(
     r'(?i)\b((?:https?:\/\/|www\d{0,3}[.]|telegram[.]me\/|t[.]me\/|[a-z0-9.\-]+[.][a-z]{2,4}\/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+)', re.IGNORECASE)
 
-show_author_links = True  # Set to False to disable displaying my links. TG @Teslak & @TesNot
+show_author_links = True  # Set to False to disable displaying author links
 
 show_user_links = False  # False by default
 
