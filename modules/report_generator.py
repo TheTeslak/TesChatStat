@@ -19,17 +19,19 @@ def generate_text_report(analysis_results, config, current_texts, output_filenam
 
         # Messages and symbols statistics
         total_msgs_formatted = format_number(analysis_results['total_messages'])
-        total_symbols = sum(analysis_results['user_symbols'].values())
-        total_symbols_formatted = format_number(total_symbols)
+        total_symbols_formatted = format_number(analysis_results['total_symbols'])
         avg_message_length = analysis_results['avg_message_length']
-        if config.get('show_non_consecutive_counts', True):
-            total_non_consecutive = sum(analysis_results['non_consecutive_counts'].values())
-            total_non_consecutive_formatted = format_number(total_non_consecutive)
-            f.write(f"{config['emojis'].get('messages','')} {current_texts['messages'].capitalize()}: {total_msgs_formatted} ({total_non_consecutive_formatted} {current_texts.get('non_consecutive', 'not consecutive')})\n")
-            f.write(f"{config['emojis'].get('symbols','')} {current_texts.get('symbols', 'symbols').capitalize()}: {total_symbols_formatted}\n")
+
+        show_non_consecutive = config.get('show_non_consecutive_counts', True)
+        if show_non_consecutive:
+            total_non_consecutive_msgs_formatted = format_number(analysis_results['total_non_consecutive_messages'])
+            total_non_consecutive_symbols_formatted = format_number(analysis_results['total_non_consecutive_symbols'])
+            f.write(f"{config['emojis'].get('messages','')} {current_texts['messages'].capitalize()}: {total_msgs_formatted} ({total_non_consecutive_msgs_formatted} {current_texts.get('non_consecutive', 'not consecutive')})\n")
+            f.write(f"{config['emojis'].get('symbols','')} {current_texts.get('symbols', 'symbols').capitalize()}: {total_symbols_formatted} ({total_non_consecutive_symbols_formatted} {current_texts.get('non_consecutive', 'not consecutive')})\n")
         else:
             f.write(f"{config['emojis'].get('messages','')} {current_texts['messages'].capitalize()}: {total_msgs_formatted}\n")
             f.write(f"{config['emojis'].get('symbols','')} {current_texts.get('symbols', 'symbols').capitalize()}: {total_symbols_formatted}\n")
+
         f.write(f"{config['emojis'].get('avg_symbols','')} {current_texts.get('avg_symbols_in_message', 'Symbols per message')}: {avg_message_length:.0f}\n\n")
 
         # Message counts by type
@@ -52,14 +54,17 @@ def generate_text_report(analysis_results, config, current_texts, output_filenam
             participants = list(analysis_results['user_counts'].keys())
             if len(participants) == 2:
                 user_counts = analysis_results['user_counts']
+                non_consecutive_counts = analysis_results['non_consecutive_counts']
                 user1, user2 = participants
                 count1 = user_counts[user1]
                 count2 = user_counts[user2]
-                if count1 > count2:
-                    f.write(f"{current_texts['personal_chat_stats'].format(user1, format_number(count1), user2, format_number(count2))}\n")
-                else:
-                    f.write(f"{current_texts['personal_chat_stats'].format(user2, format_number(count2), user1, format_number(count1))}\n")
+                non_consec_count1 = non_consecutive_counts[user1]
+                non_consec_count2 = non_consecutive_counts[user2]
+
+                f.write(f"{current_texts['personal_chat_stats'].format(user1, format_number(count1), format_number(non_consec_count1), user2, format_number(count2), format_number(non_consec_count2))}\n")
+
                 # Estimate reading time
+                total_symbols = analysis_results['total_symbols']
                 total_reading_seconds = (total_symbols / 1000) * 60  # Assuming 1000 chars per minute
                 total_reading_minutes = total_reading_seconds / 60
                 total_reading_hours = total_reading_minutes / 60
@@ -77,13 +82,14 @@ def generate_text_report(analysis_results, config, current_texts, output_filenam
             for user, count in sorted_users:
                 non_consecutive_count = analysis_results['non_consecutive_counts'][user]
                 symbols = analysis_results['user_symbols'][user]
+                non_consecutive_symbols = analysis_results['non_consecutive_symbols'][user]
                 user_id = analysis_results['user_ids'].get(user, '')
                 if config.get('show_non_consecutive_counts', True):
                     if config.get('show_user_links', False):
                         user_link = f"tg://openmessage?user_id={user_id}" if user_id else ''
-                        f.write(f"{rank}. {user} ({user_link}): {format_number(count)} ({format_number(non_consecutive_count)}) · {format_number(symbols)}\n")
+                        f.write(f"{rank}. {user} ({user_link}): {format_number(count)} ({format_number(non_consecutive_count)}) · {format_number(symbols)} ({format_number(non_consecutive_symbols)})\n")
                     else:
-                        f.write(f"{rank}. {user}: {format_number(count)} ({format_number(non_consecutive_count)}) · {format_number(symbols)}\n")
+                        f.write(f"{rank}. {user}: {format_number(count)} ({format_number(non_consecutive_count)}) · {format_number(symbols)} ({format_number(non_consecutive_symbols)})\n")
                 else:
                     if config.get('show_user_links', False):
                         user_link = f"tg://openmessage?user_id={user_id}" if user_id else ''
@@ -109,9 +115,7 @@ def generate_text_report(analysis_results, config, current_texts, output_filenam
                     rank +=1
                 f.write("\n")
 
-            # Title changes
-            title_change_count = analysis_results['title_change_count']
-            f.write(f"{current_texts['title_changes'].format(format_number(title_change_count))}\n\n")
+            # Removed title changes from the report as per request
 
         # Top words
         common_words = analysis_results['common_words']
@@ -119,6 +123,15 @@ def generate_text_report(analysis_results, config, current_texts, output_filenam
         rank = 1
         for word, freq in common_words:
             f.write(f"{rank}. {word}: {format_number(freq)} {current_texts.get('times', 'times')}\n")
+            rank += 1
+        f.write("\n")
+
+        # Top phrases
+        common_phrases = analysis_results['common_phrases']
+        f.write(f"{config['emojis'].get('phrase', '')} {current_texts.get('top_phrases', 'Top phrases')}:\n")
+        rank = 1
+        for phrase, freq in common_phrases:
+            f.write(f"{rank}. {phrase}: {format_number(freq)} {current_texts.get('times', 'times')}\n")
             rank += 1
         f.write("\n")
 

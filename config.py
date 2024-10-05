@@ -12,15 +12,17 @@ merge_folder = ''  # Folder containing JSON files for merging; leave as '' to us
 output_filename_pattern = '<chat_name>_<timestamp>.txt'  # Output report filename; <chat_name> will be replaced with chat name
 
 # List of stop words to exclude from frequent words analysis
-stop_words = ['и', 'в', 'не', 'на', 'с', 'что', 'а', 'как', 'это', 'по', 'но', 'из', 'у', 'за', 'о', 'же', 'то', 'к', 'для', 'до', 'вы', 'мы', 'они', 'он', 'она', 'оно', 'так', 'было', 'только', 'бы', 'когда', 'уже']
+stop_words_type = 'minimal'  # 'minimal' or 'extended'
 
 top_participants_count = None  # Set to None to display all participants
 top_words_count = 100  # Number of top words to display
+top_phrases_count = 100  # Number of top phrases to display
 
 emojis = {
     'title': '💬',
     'participant': '👥',
     'word': '🔠',
+    'phrase': '📝',
     'activity': '📊',
     'list_item': '➡️',
     'messages': '✉️',
@@ -29,13 +31,13 @@ emojis = {
     'voice': '🎵',
     'forwarded': '📩',
     'pictures': '🖼',
-    'videos': '📹',
+    'videos': '🎥',
     'gif': '🎬',
     'audios': '🎧',
     'files': '📑',
     'sticker': '💌',
     'command': '❗',
-    'emoji': '🥵',
+    'emoji': '😊',
     'profanity': '💢',
     'links': '🔗',
     'poll': '📊',
@@ -57,9 +59,6 @@ month_names = {
     'ru': ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь'],
     'en': ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 }
-
-# Words to detect profanity in messages
-profanity_words = ['нецензурное_слово1', 'нецензурное_слово2', 'нецензурное_слово3']  # Replace with real profane words
 
 # Command prefixes (e.g., '/')
 commands_identifiers = ['/']
@@ -84,6 +83,14 @@ url_pattern = re.compile(
 show_author_links = True  # Set to False to disable displaying author links
 
 show_user_links = False  # False by default
+
+first_message_interval_hours = 1  # Default interval in hours to consider who wrote first
+
+words_dir = 'words'  # Directory where stop words and profanity lists are stored
+
+time_offset = 0  # Time offset in hours to adjust message timestamps
+
+plot_non_consecutive_messages = False  # Default behavior is to plot based on total messages
 
 # -------------------------
 # End of Settings

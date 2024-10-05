@@ -1,174 +1,122 @@
-# Telegram Chat Analysis Script
+# Telegram Chat Analysis
 
-![Python](https://img.shields.io/badge/Python-3.x-blue.svg)
-![JSON](https://img.shields.io/badge/JSON-Compatible-orange.svg)
+![Version](https://img.shields.io/badge/Version-1.1-brightgreen.svg) ![Python](https://img.shields.io/badge/Python-3.x-blue.svg) ![JSON](https://img.shields.io/badge/JSON-Compatible-orange.svg)  
 
-## Navigation / Навигация
-
+## 📚 Navigation / Навигация
 - [English](#english)
   - [Features](#features)
   - [Usage](#usage)
-  - [Configuration Options](#configuration-options)
+  - [Configuration](#configuration)
 - [Русский](#русский)
   - [Возможности](#возможности)
   - [Использование](#использование)
-  - [Параметры конфигурации](#параметры-конфигурации)
+  - [Конфигурация](#конфигурация)
+
+---
 
 ## English
 
-Telegram Chat Statistics based on JSON export
+### 📋 Features
+- **Local Processing**
+- **Activity Graphs**: Generate graphs showing activity
+- **JSON Merging**: Merges overlapping files without duplication
+- **Detailed Statistics**: Includes message count, word frequency, participant rankings, etc.
+- **Customizable**: Configure stop-words and other settings in `config.py`
+- **Multilingual Support**
 
-### Features
+### ⚙️ Usage
 
-- Analyzes Telegram chat exports in JSON format.
-- Detailed chat activity statistics, including message counts, word frequencies, and participant rankings.
-- Customizable parameters via `config.py`, allowing modification of stop words, profanity detection, and more.
-- Merging multiple JSON files into one.
-- Generation of reports in TXT and JSON formats.
-- Support for Russian and English languages.
+1. **Prepare the Export**
+   - Export your Telegram chat **in JSON format**
+   - Place the `result.json` file in the script directory
+   - Optionally, for merging multiple files, name them `result1.json`, `result2.json`, and so on.
 
-### Usage
+2. **Run the Script**
+   - Open a terminal in the script directory
+   - Install dependencies: `pip install -r requirements.txt`
+   - Run the script: `python start.py`
 
-1. **Preparing the chat export**
-   - Export your Telegram chat using the built-in export feature in the chat menu.
-   - Select JSON format when exporting.
-   - Place the exported `result.json` file in the same directory as the script.
-   - If you have multiple exports, name them `result1.json`, `result2.json`, ...
+3. **Follow the Interface**
+   - Select an action
+   - Adjust parameters if needed, or use the default values
 
-2. **Configuring the script (optional)**
-   - Open `config.py` to customize parameters such as stop words, emojis, profanity words, and others.
-   - Modify settings like `input_file`, `merge_folder`, and `output_filename_pattern` as needed.
+4. **View the Results**
+   - Reports will be saved in TXT, PNG, and optionally JSON formats
 
-3. **Running the script**
-   - Terminal in the script directory.
-   - `python start.py`
-
-4. **Then — user-friendly interface**
-
-5. **View the results**
+#### Sample Report:
 ```
-Chat Statistics for "Name" for the period: X – Y
+Chat statistics for "Chat Name" over the period: X – Y
 
-✉️ Messages: [] ([] non-consecutive)
-🔣 Characters: [] ([] non-consecutive)
-💬 Characters per message: []
+✉️ Messages: [total] ([unique])
+🔣 Characters: [total] ([unique])
+💬 Avg. characters per message: [average]
 
-🖼 Images: []
-📹 Videos: []
-📑 Files: []
-🎧 Audio: []
-🔗 Links: []
-🎵 Voice messages: []
-🎬 GIFs: []
-💌 Stickers: []
-🥵 Emojis: []
-📊 Polls: []
-❗ Commands: []
-💢 Messages with profanity: []
-
-👥 Top participants:
-[]
-
-🔠 Top words:
-[]
-
-📊 Activity:
-Hours
-Days of the week
-Months of years
-Years
-
-📊 Most active days:
-[]
+🖼 Images: [count]
+📹 Videos: [count]
+...
 ```
 
-### Configuration Options
-
-See `config.py` for detailed configuration options, including:
-- Input and output file settings
-- Analysis parameters (top participants, words, days, etc.)
-- Language and emoji settings
-- Bot and profanity detection options
-
-
-There are bugs, and the statistics are not entirely reliable (especially regarding the categorization of messages, which can lose up to 20% of voice messages, for example). It needs further development
+### 🔧 Configuration
+Customize the analysis by editing `config.py`:
+- **Input/Output Settings**: Specify input files, merge directories, and output file names
+- **Analysis Parameters**: Set the number of top participants, words, phrases, and active days
+- **Exclude Bots**: Remove bots from message counts
+- **Time Shift**: Adjust for timezone differences
+- **Language and Emojis**
 
 
+Feel free to contribute by reporting ideas, bugs, or solutions.
+
+---
 ## Русский
 
-Статистика чата Telegram на основе JSON-экспорта
+### 📋 Возможности
+- **Локальная обработка**
+- **Начертание графиков активности**
+- **Объединение JSON**: пересекающиеся файлы объединяются без дублирования
+- **Детальная статистика**: количество сообщений, частота слов, рейтинг участников, etc
+- **Настраиваемость**: стоп-слова и другое в `config.py`
+- **Мультиязычность**
 
-### Возможности
+### ⚙️ Использование
 
-- Анализирует экспорт чата Telegram в формате JSON.
-- Детальная статистика активности чата, включая количество сообщений, частоту слов и рейтинг участников.
-- Настраиваемые параметры через `config.py`, позволяющие изменять стоп-слова, определять нежелательные слова и многое другое.
-- Объединение нескольких JSON файлов в один.
-- Генерация отчётов в TXT и JSON.
-- Поддержка русского и английского языков.
+1. **Подготовьте экспорт**
+   - Экспортируйте чат Telegram **в формате JSON**
+   - Поместите файл `result.json` в директорию со скриптом
+   - Опционально для объединения нескольких файлов назвать их `result1.json`, `result2.json` и т.д.
 
-### Использование
+2. **Запуск скрипта**
+   - Откройте терминал в директории со скриптом
+   - Установите зависимости: `pip install -r requirements.txt`
+   - Выполните: `python start.py`
 
-1. **Подготовка экспорта чата**
-   - Экспортируйте ваш чат Telegram, используя встроенную функцию экспорта в меню чата.
-   - Выберите формат JSON при экспорте.
-   - Поместите экспортированный файл `result.json` в ту же директорию, что и скрипт.
-   - Если экспортов несколько, назовите их `result1.json`, `result2.json`, …
+3. **Следуйте интерфейсу**
+   - Выберите действие
+   - Настройте параметры при необходимости или используйте значения по умолчанию
 
-2. **Настройка скрипта (опционально)**
-   - Откройте `config.py` для настройки параметров, таких как стоп-слова, эмодзи, нежелательные слова и другие.
-   - Измените настройки, такие как `input_file`, `merge_folder` и `output_filename_pattern`, по необходимости.
+4. **Просмотр результатов**
+   - Отчёты будут сохранены в формате TXT, PNG, и, опционально, JSON
 
-3. **Запуск скрипта**
-   - Терминал в директории скрипта.
-   - `python start.py`
-
-4. **Далее — понятный интерфейс**
-
-5. **Просмотр результатов**
+#### Пример отчёта:
 ```
-Статистика чата "Название" за период: X – Y
+Статистика чата "Название чата" за период: X – Y
 
-✉️ Сообщений: [] ([] не подряд)
-🔣 Символов: [] ([] не подряд)
-💬 Символов в сообщении: []
+✉️ Сообщений: [всего] ([не подряд])
+🔣 Символов: [всего] ([не подряд])
+💬 Символов в сообщении: [среднее]
 
-🖼 Изображений: []
-📹 Видео: []
-📑 Файлы: []
-🎧 Аудио: []
-🔗 Ссылки: []
-🎵 Голосовых: []
-🎬 GIF: []
-💌 Стикеров: []
-🥵 Эмодзи: []
-📊 Опросов: []
-❗ Команд: []
-💢 Сообщений с матом: []
-
-👥 Топ участников:
-[]
-
-🔠 Топ слов:
-[]
-
-📊 Активность:
-Часы
-Дни недели
-Месяцы годов
-Года
-
-📊 Самые активные дни:
-[]
+🖼 Изображений: [количество]
+📹 Видео: [количество]
+...
 ```
 
-### Параметры конфигурации
+### 🔧 Конфигурация
+Настройте анализ, отредактировав `config.py`:
+- **Настройки входа/выхода**: укажите входные файлы, папки для объединения и имена выходных файлов
+- **Параметры анализа**: задайте количество топ-участников, слов, фраз и активных дней
+- **Исключение ботов из подсчёта**
+- **Часовой сдвиг**: корректировка разницы в часовых поясах
+- **Язык и эмодзи**
 
-См. `config.py` для детальных параметров конфигурации, включая:
-- Настройки входных и выходных файлов
-- Параметры анализа (топ участников, слов, дней и т.д.)
-- Настройки языка и эмодзи
-- Опции обнаружения ботов и нежелательной лексики
 
-
-Есть баги, статистика не прям достоверная (особенно касательно категоризации сообщений, может потерять 20% голосовых, например), нужно дорабатывать
+Участвуйте в улучшении: сообщайте об идеях, багах и решениях.
