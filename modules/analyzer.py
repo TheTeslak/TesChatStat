@@ -1,5 +1,3 @@
-# modules/analyzer.py
-
 import datetime
 from collections import Counter, defaultdict
 import re

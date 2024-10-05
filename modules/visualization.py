@@ -1,5 +1,3 @@
-# modules/visualization.py
-
 import matplotlib.pyplot as plt
 
 def generate_personal_chat_plots(analysis_results, plot_filename_template, config, current_texts):

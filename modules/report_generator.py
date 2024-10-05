@@ -1,5 +1,3 @@
-# modules/report_generator.py
-
 def format_number(number):
     """Format number with spaces as thousands separators."""
     s = str(int(number))

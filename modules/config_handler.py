@@ -1,5 +1,3 @@
-# modules/config_handler.py
-
 def configure_in_console(config, current_texts, is_personal_chat):
     """Configure settings in the console, adjusting for chat type."""
     temp_config = {}
@@ -91,7 +89,6 @@ def configure_in_console(config, current_texts, is_personal_chat):
     temp_config['emojis'] = config.emojis
     temp_config['words_dir'] = config.words_dir
 
-    # For personal chats, ensure defaults
     if is_personal_chat:
         temp_config.setdefault('first_message_interval_hours', getattr(config, 'first_message_interval_hours', 1))
         temp_config.setdefault('plot_non_consecutive_messages', getattr(config, 'plot_non_consecutive_messages', False))

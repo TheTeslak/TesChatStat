@@ -1,5 +1,3 @@
-# locales/ru.py
-
 texts = {
     'ascii_art': "\033[32m" + r"""
   _______         _____ _           _    _____ _        _

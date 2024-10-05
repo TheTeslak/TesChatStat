@@ -1,5 +1,3 @@
-# start.py
-
 import sys
 import os
 import time
@@ -7,9 +5,8 @@ import datetime
 from collections import Counter, defaultdict
 import locale
 
-import config  # Import configuration
+import config
 
-# Import modules
 from modules.data_loader import load_json_file_streaming, merge_json_files
 from modules.analyzer import analyze_messages
 from modules.report_generator import generate_text_report, generate_json_report
@@ -17,7 +14,6 @@ from modules.visualization import generate_personal_chat_plots, generate_group_c
 from modules.config_handler import configure_in_console, save_config_to_file
 
 def main():
-    # Author links
     author_github_link = 'https://github.com/TheTeslak/TesChatStat'
     author_telegram_channel = 'https://t.me/TesNot'
 
