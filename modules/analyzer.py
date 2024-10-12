@@ -283,7 +283,8 @@ def analyze_messages(input_file, config, current_texts, is_personal_chat, use_st
                     message_counts['emojis'] += 1
 
                 # Check for profanity
-                if profanity_words.intersection(set(words_in_text)):
+                text_lower = text.lower()
+                if any(phrase in text_lower for phrase in profanity_words):
                     message_counts['profanity'] += 1
 
                 # Check for links

@@ -17,7 +17,7 @@ def main():
     author_github_link = 'https://github.com/TheTeslak/TesChatStat'
     author_telegram_channel = 'https://t.me/TesNot'
 
-    version = "Version 1.1"
+    version = "Version 1.1.1"
 
     # Load available languages from the locales folder
     locales_dir = os.path.join(os.path.dirname(__file__), 'locales')

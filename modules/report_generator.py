@@ -1,3 +1,5 @@
+import json
+
 def format_number(number):
     """Format number with spaces as thousands separators."""
     s = str(int(number))
@@ -174,7 +176,6 @@ def generate_text_report(analysis_results, config, current_texts, output_filenam
 def generate_json_report(analysis_results, json_output_filename):
     """Generate the JSON report (currently empty)."""
     json_output_data = {
-        # Include any data you want to output to the JSON file
     }
     with open(json_output_filename, 'w', encoding='utf-8') as jf:
         json.dump(json_output_data, jf, ensure_ascii=False, indent=4)
