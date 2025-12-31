@@ -1,0 +1,31 @@
+{
+    "schema_version": 1,
+    "latest_version": "2.0.0",
+    "min_python": "3.10",
+    "alerts": {
+        "message": null
+    },
+    "links": {
+        "download": "https://github.com/TheTeslak/Kmetrum",
+        "telegram": "https://t.me/TesNot"
+    },
+    "history": [
+        {
+            "v": "2.0.0",
+            "date": "2025-12-31",
+            "importance": "high",
+            "tags": [
+                "rewrite",
+                "core"
+            ],
+            "desc": {
+                "ru": "Полный рефакторинг на модульную ООП-архитектуру с паттерном Strategy, строгой типизацией и Jitter-буфером для коррекции хронологии.",
+                "en": "Complete OOP rewrite with Strategy pattern, strict typing, and Jitter Buffer for accurate message chronology."
+            },
+            "requirements": {
+                "pip_update": true,
+                "config_reset": true
+            }
+        }
+    ]
+}

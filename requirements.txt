@@ -1,2 +1,10 @@
 ijson
+requests
+fluent.runtime
+pymorphy3
+pymorphy3-dicts-ru
 matplotlib
+wordcloud
+pandas
+seaborn
+tqdm 

@@ -1,5 +1,0 @@
-{
-  "latest_version": "1.4.0",
-  "release_date": "2025-04-18",
-  "important": true
-}
